@@ -1,0 +1,542 @@
+/* Stile iniziale: tipografia, colori e variabili CSS sono già predisposti.
+   Lavoreremo su collegamenti, CSS condiviso e disposizione delle schede. */
+
+/* Scelte comuni: ogni regola usa var() per richiamarne il valore. */
+:root {
+  --colore-primario: #245c49;
+  --colore-primario-scuro: #173f32;
+  --colore-sfondo: #f5f2e9;
+  --colore-testo: #202923;
+  --font-testo: Arial, Helvetica, sans-serif;
+  --font-titoli: Georgia, "Times New Roman", serif;
+}
+
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--colore-sfondo);
+  color: var(--colore-testo);
+  font-family: var(--font-testo);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+a {
+  color: var(--colore-primario);
+}
+
+a:hover {
+  text-decoration-thickness: 3px;
+}
+
+a:focus-visible {
+  outline: 3px solid var(--colore-testo);
+  outline-offset: 4px;
+}
+
+.container {
+  width: 92%;
+  max-width: 68rem;
+  margin: 0 auto;
+}
+
+.site-header {
+  padding: 1.25rem 0;
+  border-bottom: 4px solid var(--colore-primario);
+}
+
+.brand {
+  display: inline-block;
+  color: var(--colore-testo);
+  font-size: 1.75rem;
+  font-weight: bold;
+  line-height: 1.2;
+  text-decoration: none;
+}
+
+.brand span {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: normal;
+}
+
+nav {
+  margin-top: 1rem;
+}
+
+nav a {
+  display: inline-block;
+  margin-right: 1rem;
+  padding: 0.25rem 0;
+}
+
+nav a[aria-current="page"] {
+  font-weight: bold;
+}
+
+.intro {
+  padding: 3rem 0 1rem;
+}
+
+.eyebrow,
+.event-meta {
+  color: #46564b;
+  font-size: 0.875rem;
+  font-weight: bold;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-titoli);
+  line-height: 1.2;
+}
+
+h1 {
+  max-width: 18ch;
+  margin: 0.75rem 0 1.25rem;
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 1.75rem;
+}
+
+h3 {
+  margin: 0.5rem 0 0.75rem;
+  font-size: 1.375rem;
+}
+
+.lead {
+  max-width: 48ch;
+  font-size: 1.25rem;
+}
+
+.reading-text {
+  max-width: 65ch;
+}
+
+.button-link {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.5rem;
+  background: var(--colore-primario);
+  color: #ffffff;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.button-link:hover {
+  background: var(--colore-primario-scuro);
+}
+
+.content-section {
+  margin: 2rem 0 3rem;
+}
+
+.festival-image {
+  display: block;
+  width: 100%;
+  max-width: 54rem;
+  height: auto;
+  margin-top: 1.5rem;
+  border-radius: 0.75rem;
+}
+
+.venues {
+  padding-left: 1.25rem;
+}
+
+.venues li {
+  margin-bottom: 0.5rem;
+}
+
+.event-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.25rem;
+}
+
+@media (min-width: 600px) {
+  .event-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .event-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+.event-card {
+  margin-bottom: 0;
+  overflow: hidden;
+  border: 1px solid #b7c0b7;
+  border-radius: 0.75rem;
+  background: #ffffff;
+}
+
+.event-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.event-body {
+  padding: 1.25rem;
+}
+
+.event-body p:last-child {
+  margin-bottom: 0;
+}
+
+.event-place {
+  color: #46564b;
+  font-size: 0.875rem;
+}
+
+.site-footer {
+  padding: 1.25rem 0;
+  border-top: 1px solid #b7c0b7;
+  color: #46564b;
+  font-size: 0.875rem;
+}
+
+.skip-link {
+  position: absolute;
+  top: -6rem;
+  left: 1rem;
+  padding: 0.75rem 1rem;
+  background: #ffffff;
+  color: var(--colore-testo);
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* Qui aggiungeremo la media query durante la demo. */
+.gallery-grid,
+.venue-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.25rem;
+}
+
+.gallery-card,
+.venue-card {
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid #b7c0b7;
+  border-radius: 0.75rem;
+  background: #ffffff;
+}
+
+.gallery-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.gallery-card figcaption,
+.venue-card {
+  padding: 1rem;
+}
+
+.venue-card h3 {
+  margin-top: 0;
+}
+
+.venue-card address {
+  overflow-wrap: anywhere;
+  font-style: normal;
+  font-weight: bold;
+}
+
+.venue-card address span {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: normal;
+}
+
+.schematic-map {
+  position: relative;
+  min-height: 16rem;
+  max-width: 100%;
+  overflow: hidden;
+  border: 1px solid #b7c0b7;
+  border-radius: 0.75rem;
+  background:
+    linear-gradient(35deg, transparent 47%, #c5cebd 48%, #c5cebd 51%, transparent 52%),
+    linear-gradient(145deg, transparent 46%, #d2d9cb 47%, #d2d9cb 50%, transparent 51%),
+    #e8eadf;
+  background-size: 12rem 10rem;
+}
+
+.map-place {
+  position: absolute;
+  max-width: 45%;
+  padding: 0.4rem 0.6rem;
+  border: 2px solid var(--colore-primario);
+  border-radius: 0.5rem;
+  background: #ffffff;
+  font-size: 0.875rem;
+  font-weight: bold;
+  overflow-wrap: anywhere;
+}
+
+.place-one {
+  top: 15%;
+  left: 5%;
+}
+
+.place-two {
+  top: 58%;
+  left: 35%;
+}
+
+.place-three {
+  top: 20%;
+  right: 5%;
+}
+
+@media (min-width: 600px) {
+  .gallery-grid,
+  .venue-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .gallery-grid,
+  .venue-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+.luoghi-swiper {
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 0.75rem;
+  background: #ffffff;
+}
+
+.luoghi-swiper .swiper-slide {
+  height: auto;
+  margin: 0;
+}
+
+.luoghi-swiper .swiper-slide img {
+  display: block;
+  width: 100%;
+  height: clamp(14rem, 50vw, 32rem);
+  object-fit: cover;
+}
+
+.luoghi-swiper figcaption {
+  display: grid;
+  gap: 0.25rem;
+  padding: 1rem;
+}
+
+.luoghi-controls {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0 1rem 1rem;
+}
+
+.luoghi-controls .swiper-button-prev,
+.luoghi-controls .swiper-button-next {
+  position: static;
+  width: auto;
+  height: auto;
+  min-height: 2.75rem;
+  margin: 0;
+  padding: 0.5rem 1rem;
+  border: 0;
+  border-radius: 0.5rem;
+  background: var(--colore-primario);
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.luoghi-controls .swiper-button-prev::after,
+.luoghi-controls .swiper-button-next::after {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.luoghi-controls .swiper-button-prev:hover,
+.luoghi-controls .swiper-button-next:hover {
+  background: var(--colore-primario-scuro);
+}
+
+.luoghi-controls .swiper-button-prev:focus-visible,
+.luoghi-controls .swiper-button-next:focus-visible {
+  outline: 3px solid var(--colore-testo);
+  outline-offset: 3px;
+}
+.venue-swiper {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  padding-bottom: 1rem;
+}
+
+.venue-swiper .swiper-slide {
+  width: 100%;
+  min-width: 0;
+  height: auto;
+  box-sizing: border-box;
+}
+
+.venue-card {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #f5f2ed;
+}
+
+.venue-card img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 12 / 7;
+  object-fit: cover;
+}
+
+.venue-card-content {
+  min-width: 0;
+  padding: 1.25rem;
+  overflow-wrap: break-word;
+}
+
+.venue-card-content h3 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.venue-card-content .reading-text {
+  margin-bottom: 0;
+}
+
+.venue-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.venue-controls .swiper-button-prev,
+.venue-controls .swiper-button-next {
+  position: static;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  margin: 0;
+}
+
+.venue-controls .swiper-button-prev::after,
+.venue-controls .swiper-button-next::after {
+  font-size: 18px;
+}
+
+.venue-controls .swiper-pagination {
+  position: static;
+  width: auto;
+}
+
+.venue-controls .swiper-pagination-bullet {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.venue-controls .swiper-pagination-bullet-active {
+  opacity: 1;
+}
+
+
+.map-container {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  border-radius: 12px;
+  margin-top: 1.5rem;
+}
+
+.map-container iframe {
+  display: block;
+  width: 100%;
+  height: 450px;
+  border: 0;
+}
+
+
+.venue-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.venue-location {
+  min-width: 0;
+  padding: 1.25rem;
+  overflow-wrap: break-word;
+  border: 1px solid #d8d4ce;
+  border-radius: 12px;
+}
+
+.venue-location h3 {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+}
+
+.venue-location p {
+  line-height: 1.6;
+}
+
+.venue-location a {
+  display: inline-block;
+  margin-top: 0.5rem;
+}
+
+
+@media (min-width: 768px) {
+  .venue-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1280px) {
+  .venue-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+
+@media (max-width: 600px) {
+  .venue-card-content {
+    padding: 1rem;
+  }
+
+  .map-container iframe {
+    height: 350px;
+  }
+
+  .venue-controls {
+    gap: 0.5rem;
+  }
+}
