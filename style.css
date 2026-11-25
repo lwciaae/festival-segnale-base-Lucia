@@ -539,4 +539,22 @@ h3 {
   .venue-controls {
     gap: 0.5rem;
   }
+.weather-card {
+  padding: 1.25rem;
+  border: 1px solid #b7c0b7;
+  border-radius: 0.75rem;
+  background: #ffffff;
+}
+
+.weather-card h2 {
+  margin-top: 0;
+}
+
+.weather-card p:last-child {
+  margin-bottom: 0;
+}
+
+.weather-source {
+  font-size: 0.875rem;
+}
 }

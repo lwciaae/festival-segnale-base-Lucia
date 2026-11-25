@@ -1,0 +1,74 @@
+# Scheda dati — Festival Segnale
+
+## Entità
+
+### Evento
+
+| Campo | Tipo | Esempio |
+|---|---|---|
+| `id` | numero intero | `1` |
+| `titolo` | stringa | `"Lettere in movimento"` |
+| `data` | stringa, formato `AAAA-MM-GG` | `"2026-06-12"` |
+| `orario` | stringa, formato `HH:MM` | `"10:00"` |
+| `categoria` | stringa | `"Incontro"` |
+| `descrizione` | stringa | `"Un incontro su tipografia, ritmo e comunicazione visiva."` |
+| `immagine` | stringa, percorso del file | `"assets/lettere-in-movimento.svg"` |
+| `immagine_alt` | stringa | `"Lettere geometriche disposte su una griglia"` |
+| `sede_id` | numero intero | `1` |
+
+**Chiave primaria:** `id`, numerico, univoco nell'entità e stabile.
+
+### Sede
+
+| Campo | Tipo | Esempio |
+|---|---|---|
+| `id` | numero intero | `1` |
+| `nome` | stringa | `"Officina Nord — Sede centrale"` |
+| `indirizzo` | stringa | `"Corso Duca degli Abruzzi 24, Torino"` |
+
+**Chiave primaria:** `id`, numerico, univoco nell'entità e stabile.
+
+## Relazione
+
+Una sede può ospitare più eventi; ogni evento si svolge in una sede.
+`Evento.sede_id` fa riferimento a `Sede.id`.
+
+## Quantità
+
+- Eventi: **6**
+- Sedi: **3**
+
+## Aggiornamento dei dati
+
+Chi mantiene il progetto aggiorna i dati modificando i file JSON nella repository.
+Dopo aver salvato e caricato le modifiche, la repository pubblica il sito secondo
+la configurazione di pubblicazione.
+
+## Cosa mostra la pagina
+
+La pagina Programma mostra i sei eventi con titolo, data, orario, categoria,
+descrizione, immagine e sede. La pagina Info e luoghi presenta le tre sedi con
+nome, indirizzo, fotografie e mappa schematica.
+
+## Schema Evento–Sede
+
+```mermaid
+erDiagram
+    Sede ||--o{ Evento : ospita
+    Sede {
+        int id PK
+        string nome
+        string indirizzo
+    }
+    Evento {
+        int id PK
+        string titolo
+        string data
+        string orario
+        string categoria
+        string descrizione
+        string immagine
+        string immagine_alt
+        int sede_id FK
+    }
+```
