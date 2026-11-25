@@ -10,53 +10,7 @@
 
   <link rel="stylesheet" href="style.css">
 </head>
-<script>
-  async function caricaMeteo() {
-    const messaggio = document.querySelector("#meteo-messaggio");
-    const dati = document.querySelector("#meteo-dati");
 
-    const url = "https://api.open-meteo.com/v1/forecast"
-      + "?latitude=45.0703"
-      + "&longitude=7.6869"
-      + "&current=temperature_2m,wind_speed_10m"
-      + "&timezone=Europe%2FRome";
-
-    try {
-      const risposta = await fetch(url);
-
-      if (!risposta.ok) {
-        throw new Error("Risposta meteo non disponibile");
-      }
-
-      const risultato = await risposta.json();
-      const corrente = risultato.current;
-      const unita = risultato.current_units;
-
-      if (!corrente || !unita) {
-        throw new Error("Dati meteo incompleti");
-      }
-
-      document.querySelector("#meteo-temperatura").textContent =
-        `${corrente.temperature_2m} ${unita.temperature_2m}`;
-
-      document.querySelector("#meteo-vento").textContent =
-        `${corrente.wind_speed_10m} ${unita.wind_speed_10m}`;
-
-      const ora = document.querySelector("#meteo-ora");
-      ora.dateTime = corrente.time;
-      ora.textContent = corrente.time.replace("T", " ");
-
-      dati.hidden = false;
-      messaggio.textContent = "";
-    } catch (errore) {
-      console.error("Errore nel caricamento del meteo:", errore);
-      messaggio.textContent =
-        "Il meteo al momento non è disponibile. Le altre informazioni della pagina restano consultabili.";
-    }
-  }
-
-  caricaMeteo();
-</script>
 
 <body>
 
@@ -405,6 +359,52 @@
       }
     });
   </script>
+<script>
+  async function caricaMeteo() {
+    const messaggio = document.querySelector("#meteo-messaggio");
+    const dati = document.querySelector("#meteo-dati");
 
+    const url = "https://api.open-meteo.com/v1/forecast"
+      + "?latitude=45.0703"
+      + "&longitude=7.6869"
+      + "&current=temperature_2m,wind_speed_10m"
+      + "&timezone=Europe%2FRome";
+
+    try {
+      const risposta = await fetch(url);
+
+      if (!risposta.ok) {
+        throw new Error("Risposta meteo non disponibile");
+      }
+
+      const risultato = await risposta.json();
+      const corrente = risultato.current;
+      const unita = risultato.current_units;
+
+      if (!corrente || !unita) {
+        throw new Error("Dati meteo incompleti");
+      }
+
+      document.querySelector("#meteo-temperatura").textContent =
+        `${corrente.temperature_2m} ${unita.temperature_2m}`;
+
+      document.querySelector("#meteo-vento").textContent =
+        `${corrente.wind_speed_10m} ${unita.wind_speed_10m}`;
+
+      const ora = document.querySelector("#meteo-ora");
+      ora.dateTime = corrente.time;
+      ora.textContent = corrente.time.replace("T", " ");
+
+      dati.hidden = false;
+      messaggio.textContent = "";
+    } catch (errore) {
+      console.error("Errore nel caricamento del meteo:", errore);
+      messaggio.textContent =
+        "Il meteo al momento non è disponibile. Le altre informazioni della pagina restano consultabili.";
+    }
+  }
+
+  caricaMeteo();
+</script>
 </body>
 </html>
